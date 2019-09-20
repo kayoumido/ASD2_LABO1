@@ -21,12 +21,12 @@ int main(int argc, char** argv) {
     string file("movies.txt");
     string source("Grandberry, Omarion");
     string sink("Bacon, Kevin");
-    
+
     SymbolGraph<GraphUsingAdjacencyLists> SG(file);
 
     BFS<GraphUsingAdjacencyLists> bfs(SG.G());
     bfs.visit(SG.index(sink),[](int){});
-    
+
     // Affiche le chemin acteur->film->acteur->...->film->acteur
     int v = SG.index(source);
     while(v != bfs.parentOf(v))
@@ -35,7 +35,7 @@ int main(int argc, char** argv) {
         v = bfs.parentOf(v);
     }
     cout << SG.symbol(v) << endl;
-    
+
     cout << endl;
 
     // Affiche les films dans lesquels Omarion Grandberry a joué
@@ -43,10 +43,10 @@ int main(int argc, char** argv) {
     for (auto adj : adjacents) {
         cout << adj << endl;
     }
-    
+
     cout << endl;
-    
+
     return EXIT_SUCCESS;
-    
+
 }
 
