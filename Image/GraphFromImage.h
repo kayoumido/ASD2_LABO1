@@ -9,6 +9,7 @@
 #define	GRAPHFROMIMAGE_H
 
 #include <list>
+#include <vector>
 
 #include "bitmap_image.hpp"
 
@@ -41,6 +42,7 @@ public:
 private:
     const bitmap_image& image;
     // **** ___VOTRE CODE CI-DESSOUS___ **** //
+    std::vector<std::pair<int, int>> vertexes;
 };
 
 #endif	/* GRAPHFROMIMAGE_H */
