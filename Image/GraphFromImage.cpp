@@ -7,12 +7,7 @@
 using namespace std;
 
 GraphFromImage::GraphFromImage(const bitmap_image& i) : image(i) {
-    // All pixel (a x,y pair) is a vertex of the graph
-    for(int row = 0; row < (int)i.width(); ++row){
-        for(int col = 0; col < (int)i.height(); ++col){
-            this->vertexes.emplace_back(make_pair(row,col));
-        }
-    }
+    // Nothing to do ?
 }
 
 // throws std::out_of_range
@@ -22,13 +17,11 @@ GraphFromImage::Iterable GraphFromImage::adjacent(int v) const {
 
 // throws std::out_of_range
 int GraphFromImage::idx(int x, int y) const {
-    pair<int, int> xy = make_pair(x,y);
-    auto it = find(this->vertexes.begin(), this->vertexes.end(), xy);
-
-    if(it != this->vertexes.end()){
-        return (int)distance(vertexes.begin(), it);
+    // Check that coordinates are inside the image
+    if((x >= 0 || x < (int)image.width()) && (y >= 0 || y < (int)image.height())){
+        return y + x * (int)image.width();
     }else{
-        throw std::out_of_range("x,y outside the image");
+        throw(out_of_range("Coordinates are outside the image"));
     }
 }
 

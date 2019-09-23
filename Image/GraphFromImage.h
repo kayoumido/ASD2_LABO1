@@ -42,7 +42,6 @@ public:
 private:
     const bitmap_image& image;
     // **** ___VOTRE CODE CI-DESSOUS___ **** //
-    std::vector<std::pair<int, int>> vertexes;
 };
 
 #endif	/* GRAPHFROMIMAGE_H */
