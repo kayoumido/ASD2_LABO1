@@ -14,41 +14,61 @@ GraphFromImage::Iterable GraphFromImage::adjacent(int v) const {
     Iterable adj;
     try {
         if(isIdxInsideImage(v)){
-            /*
-            unsigned char rWanted,gWanted,bWanted;
+
+            unsigned char rWanted = 255;
+            unsigned char gWanted = 255;
+            unsigned char bWanted = 255;
             unsigned char r,g,b;
-            image.get_pixel((unsigned)x(v),(unsigned)y(v), rWanted, gWanted, bWanted);
 
             int topAdj = v - (int)image.width();
             int leftAdj = v - 1;
             int rightAdj = v + 1;
             int botAdj = v + (int)image.width();
 
-            if(isIdxInsideImage(topAdj)){
-                image.get_pixel((unsigned)x(topAdj),(unsigned)y(topAdj), r, g, b);
-                if(r == rWanted && g == gWanted && b == bWanted){
-                    adj.push_back(topAdj);
+
+            try {
+                if (isIdxInsideImage(topAdj)) {
+                    image.get_pixel((unsigned) x(topAdj), (unsigned) y(topAdj), r, g, b);
+                    if (r == rWanted && g == gWanted && b == bWanted) {
+                        adj.push_back(topAdj);
+                    }
                 }
+            }catch(const out_of_range& e){
+                // Do nothing if exception thrown
             }
-            if(isIdxInsideImage(leftAdj)){
-                image.get_pixel((unsigned)x(leftAdj),(unsigned)y(leftAdj), r, g, b);
-                if(r == rWanted && g == gWanted && b == bWanted){
-                    adj.push_back(topAdj);
+
+            try{
+                if (isIdxInsideImage(leftAdj)) {
+                    image.get_pixel((unsigned) x(leftAdj), (unsigned) y(leftAdj), r, g, b);
+                    if (r == rWanted && g == gWanted && b == bWanted) {
+                        adj.push_back(leftAdj);
+                    }
                 }
+            }catch(const out_of_range& e){
+                // Do nothing if exception thrown
             }
-            if(isIdxInsideImage(rightAdj)){
-                image.get_pixel((unsigned)x(rightAdj),(unsigned)y(rightAdj), r, g, b);
-                if(r == rWanted && g == gWanted && b == bWanted){
-                    adj.push_back(rightAdj);
+
+            try{
+                if (isIdxInsideImage(rightAdj)) {
+                    image.get_pixel((unsigned) x(rightAdj), (unsigned) y(rightAdj), r, g, b);
+                    if (r == rWanted && g == gWanted && b == bWanted) {
+                        adj.push_back(rightAdj);
+                    }
                 }
+            }catch(const out_of_range& e){
+                // Do nothing if exception thrown
             }
-            if(isIdxInsideImage(botAdj)){
-                image.get_pixel((unsigned)x(botAdj),(unsigned)y(botAdj), r, g, b);
-                if(r == rWanted && g == gWanted && b == bWanted){
-                    adj.push_back(botAdj);
+
+            try{
+                if (isIdxInsideImage(botAdj)) {
+                    image.get_pixel((unsigned) x(botAdj), (unsigned) y(botAdj), r, g, b);
+                    if (r == rWanted && g == gWanted && b == bWanted) {
+                        adj.push_back(botAdj);
+                    }
                 }
+            }catch(const out_of_range& e){
+                // Do nothing if exception thrown
             }
-             */
         }
     }catch(const out_of_range& e){
         throw e;
