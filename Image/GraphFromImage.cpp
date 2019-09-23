@@ -7,12 +7,53 @@ using namespace std;
 
 GraphFromImage::GraphFromImage(const bitmap_image& i) : image(i) {
     // Nothing to do ?
-    cout << y(V()-1) << endl;
 }
 
 // throws std::out_of_range
 GraphFromImage::Iterable GraphFromImage::adjacent(int v) const {
+    Iterable adj;
+    try {
+        if(isIdxInsideImage(v)){
+            /*
+            unsigned char rWanted,gWanted,bWanted;
+            unsigned char r,g,b;
+            image.get_pixel((unsigned)x(v),(unsigned)y(v), rWanted, gWanted, bWanted);
 
+            int topAdj = v - (int)image.width();
+            int leftAdj = v - 1;
+            int rightAdj = v + 1;
+            int botAdj = v + (int)image.width();
+
+            if(isIdxInsideImage(topAdj)){
+                image.get_pixel((unsigned)x(topAdj),(unsigned)y(topAdj), r, g, b);
+                if(r == rWanted && g == gWanted && b == bWanted){
+                    adj.push_back(topAdj);
+                }
+            }
+            if(isIdxInsideImage(leftAdj)){
+                image.get_pixel((unsigned)x(leftAdj),(unsigned)y(leftAdj), r, g, b);
+                if(r == rWanted && g == gWanted && b == bWanted){
+                    adj.push_back(topAdj);
+                }
+            }
+            if(isIdxInsideImage(rightAdj)){
+                image.get_pixel((unsigned)x(rightAdj),(unsigned)y(rightAdj), r, g, b);
+                if(r == rWanted && g == gWanted && b == bWanted){
+                    adj.push_back(rightAdj);
+                }
+            }
+            if(isIdxInsideImage(botAdj)){
+                image.get_pixel((unsigned)x(botAdj),(unsigned)y(botAdj), r, g, b);
+                if(r == rWanted && g == gWanted && b == bWanted){
+                    adj.push_back(botAdj);
+                }
+            }
+             */
+        }
+    }catch(const out_of_range& e){
+        throw e;
+    }
+    return adj;
 }
 
 // throws std::out_of_range
