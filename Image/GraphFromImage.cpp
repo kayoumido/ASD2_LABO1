@@ -7,6 +7,7 @@ using namespace std;
 
 GraphFromImage::GraphFromImage(const bitmap_image& i) : image(i) {
     // Nothing to do ?
+    cout << y(V()-1) << endl;
 }
 
 // throws std::out_of_range
@@ -18,7 +19,7 @@ GraphFromImage::Iterable GraphFromImage::adjacent(int v) const {
 int GraphFromImage::idx(int x, int y) const {
     try {
         if(isCoordInsideImage(x,y)){
-            return y + x * (int)image.width();
+            return x + y * (int)image.width();
         }
     }catch(const out_of_range& e){
         throw e;
@@ -40,7 +41,7 @@ int GraphFromImage::x(int idx) const {
 int GraphFromImage::y(int idx) const {
     try {
         if (isIdxInsideImage(idx)) {
-            return idx / (int) image.height();
+            return idx / (int)image.width();
         }
     }catch(const out_of_range& e){
         throw(e);
@@ -57,7 +58,7 @@ int GraphFromImage::V() const {
 
 bool GraphFromImage::isCoordInsideImage(int x, int y) const{
     // Check that coordinates are inside the image
-    if((x >= 0 || x < (int)image.width()) && (y >= 0 || y < (int)image.height())){
+    if((x >= 0 && x < (int)image.width()) && (y >= 0 && y < (int)image.height())){
         return true;
     }else{
         throw(out_of_range("Coordinates are outside the image"));
@@ -65,7 +66,7 @@ bool GraphFromImage::isCoordInsideImage(int x, int y) const{
 }
 
 bool GraphFromImage::isIdxInsideImage(int idx) const{
-    if(idx >= 0 || idx < (int)image.width() * (int)image.height()){
+    if(idx >= 0 && idx < (int)image.width() * (int)image.height()){
         return true;
     }else{
         throw(out_of_range("Index are outside the image"));
