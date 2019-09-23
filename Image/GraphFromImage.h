@@ -44,6 +44,7 @@ private:
     // **** ___VOTRE CODE CI-DESSOUS___ **** //
     bool isIdxInsideImage(int idx) const;
     bool isCoordInsideImage(int x, int y) const;
+    bool isCorrectAdjacent(int v, unsigned char rWanted, unsigned char gWanted, unsigned char bWanted) const;
 };
 
 #endif	/* GRAPHFROMIMAGE_H */
