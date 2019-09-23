@@ -42,6 +42,8 @@ public:
 private:
     const bitmap_image& image;
     // **** ___VOTRE CODE CI-DESSOUS___ **** //
+    bool isIdxInsideImage(int idx) const;
+    bool isCoordInsideImage(int x, int y) const;
 };
 
 #endif	/* GRAPHFROMIMAGE_H */
