@@ -14,9 +14,8 @@ GraphFromImage::Iterable GraphFromImage::adjacent(int v) const {
     Iterable adj;
     try {
         if(isIdxInsideImage(v)){
-            unsigned char rWanted = 255;
-            unsigned char gWanted = 255;
-            unsigned char bWanted = 255;
+            unsigned char rWanted, gWanted, bWanted;
+            image.get_pixel((unsigned) x(v), (unsigned) y(v), rWanted, gWanted, bWanted);
 
             int topAdj = v - (int)image.width();
             int leftAdj = v - 1;
