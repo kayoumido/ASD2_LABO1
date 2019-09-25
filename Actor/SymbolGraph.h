@@ -25,12 +25,12 @@ class SymbolGraph
 private:
     Graph* g;
     // A IMPLEMENTER: vos structures privées ici.
-    
+    std::vector<std::pair<std::string, std::vector<std::string>>>vertexes;
 public:
     
     ~SymbolGraph()
     {
-        delete g; 
+        //delete g;
     }            
     
     //creation du SymbolGraph a partir du fichier movies.txt
@@ -39,18 +39,30 @@ public:
         // Indication: nous autorisons une double lecture du fichier.
 
         // exemple de lecture du fichier, ligne par ligne puis element par element (separe par des /)
-        std::string line;
 
+        std::string line;
         std::ifstream s(filename);
         while (std::getline(s, line))
         {
             auto names = split(line,'/');
-            
-            for( auto name : names ) {
-                std::cout << name << " ";
+
+            unsigned first = true;
+            std::string movieName;
+            std::vector<std::string> actors;
+            std::pair<std::string, std::vector<std::string>> vertex;
+
+            for( const auto& name : names ) {
+                if(first){
+                    movieName = name;
+                    first = false;
+                }else{
+                    actors.push_back(name);
+                }
             }
-            
-            std::cout << std::endl;
+
+            vertex = std::make_pair(movieName, actors);
+            vertexes.push_back(vertex);
+
         }
         s.close();
     }
@@ -72,7 +84,15 @@ public:
 
     //symboles adjacents a un symbole
     std::vector<std::string> adjacent(const std::string& name) const {
-        /* A IMPLEMENTER */
+        // If a movie name is given, return the actors vector
+        auto it = std::find(vertexes.begin(), vertexes.end(), name);
+        if(it != vertexes.end()){
+            return *it;
+        }
+        // If an actor is given, return all it's movie
+        else{
+
+        }
     }
     
     const Graph& G() const {
