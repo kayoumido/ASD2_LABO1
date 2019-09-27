@@ -24,7 +24,7 @@ int main(int argc, char** argv) {
 
     SymbolGraph<GraphUsingAdjacencyLists> SG(file);
 
-    /*
+
     BFS<GraphUsingAdjacencyLists> bfs(SG.G());
     bfs.visit(SG.index(sink),[](int){});
 
@@ -46,7 +46,7 @@ int main(int argc, char** argv) {
     }
 
     cout << endl;
-     */
+
 
     return EXIT_SUCCESS;
 

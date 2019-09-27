@@ -15,6 +15,8 @@
 #include <sstream>
 #include <algorithm>
 #include <vector>
+#include <map>
+#include <list>
 
 #include "Util.h"
 
@@ -25,12 +27,12 @@ class SymbolGraph
 private:
     Graph* g;
     // A IMPLEMENTER: vos structures privées ici.
-    std::vector<std::pair<std::string, std::vector<std::string>>>vertexes;
+    std::map<std::string, int> symbols;
 public:
     
     ~SymbolGraph()
     {
-        //delete g;
+        delete g;
     }            
     
     //creation du SymbolGraph a partir du fichier movies.txt
@@ -42,57 +44,78 @@ public:
 
         std::string line;
         std::ifstream s(filename);
+        int idx = 0;
         while (std::getline(s, line))
         {
             auto names = split(line,'/');
 
-            unsigned first = true;
-            std::string movieName;
-            std::vector<std::string> actors;
-            std::pair<std::string, std::vector<std::string>> vertex;
-
-            for( const auto& name : names ) {
-                if(first){
-                    movieName = name;
-                    first = false;
-                }else{
-                    actors.push_back(name);
+            // Add all unique symbols inside a map
+            for(auto name : names) {
+                auto it = symbols.find(name);
+                if(it == symbols.end()){
+                    symbols[name] = idx++;
                 }
             }
 
-            vertex = std::make_pair(movieName, actors);
-            vertexes.push_back(vertex);
+        }
+
+        // Return to the beginning of the file
+        s.clear();
+        s.seekg(0, std::ios::beg);
+
+        // Create a Graph with the good size
+        g = new Graph(symbols.size());
+
+        // Browse file again to populate the Graph
+        while (std::getline(s, line))
+        {
+            auto names = split(line,'/');
+
+            std::string movieName = names[0];
+            auto itMovie = symbols.find(movieName);
+
+            for(unsigned i = 1; i < names.size(); ++i) {
+                auto itActor = symbols.find(names[i]);
+                g->addEdge(itMovie->second, itActor->second);
+            }
 
         }
+
         s.close();
     }
     
     //verifie la presence d'un symbole
     bool contains(const std::string& name) const {
-        /* A IMPLEMENTER */
+        auto it = symbols.find(name);
+        return it != symbols.end();
     }
     
     //index du sommet correspondant au symbole
     int index(const std::string& name) const {
-         /* A IMPLEMENTER */
+         auto it = symbols.find(name);
+         return it->second;
     }
     
     //symbole correspondant au sommet
     std::string symbol(int idx) const {
-        /* A IMPLEMENTER */
+        for (auto it = symbols.begin(); it != symbols.end(); ++it) {
+            if (it->second == idx) {
+                return it->first;
+            }
+        }
     }
 
     //symboles adjacents a un symbole
     std::vector<std::string> adjacent(const std::string& name) const {
-        // If a movie name is given, return the actors vector
-        auto it = std::find(vertexes.begin(), vertexes.end(), name);
-        if(it != vertexes.end()){
-            return *it;
-        }
-        // If an actor is given, return all it's movie
-        else{
+        int idx = index(name);
+        std::list<int> idxAdj = g->adjacent(idx);
+        std::vector<std::string> adj(idxAdj.size());
 
+        for(auto it = idxAdj.begin(); it != idxAdj.end(); ++it){
+            adj.push_back(symbol(*it));
         }
+
+        return adj;
     }
     
     const Graph& G() const {
