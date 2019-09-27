@@ -1,8 +1,10 @@
-/* 
- * File:   GraphFromImage.h
- * Author: Olivier Cuisenaire
+/**
+ * File: GraphFromImage.h
+ * Authors: Olivier Cuisenaire
+ * Modified by: Robin Demarta, Loïc Dessaules, Doran Kayoumi
  *
  * Created on 2. octobre 2014, 12:09
+ * Description: Class to generate a Graph based on an Image
  */
 
 #ifndef GRAPHFROMIMAGE_H

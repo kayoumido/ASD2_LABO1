@@ -1,3 +1,12 @@
+/**
+ * File: GraphFromImage.cpp
+ * Authors: Olivier Cuisenaire
+ * Modified by: Robin Demarta, Loïc Dessaules, Doran Kayoumi
+ *
+ * Created on 18. septembre 2014, 10:46
+ * Description: Class to generate a Graph based on an Image
+ */
+
 #include "GraphFromImage.h"
 
 #include <iostream>
@@ -5,9 +14,7 @@
 
 using namespace std;
 
-GraphFromImage::GraphFromImage(const bitmap_image &i) : image(i) {
-    // Nothing to do ?
-}
+GraphFromImage::GraphFromImage(const bitmap_image &i) : image(i) {}
 
 // throws std::out_of_range
 GraphFromImage::Iterable GraphFromImage::adjacent(int v) const {
