@@ -1,9 +1,10 @@
-/* 
- * File:   SymbolGraph.h
- * Author: Olivier Cuisenaire
- * Modified: Valentin Minder (2018), Raphaël Racine (2018), Antoine Rochat (2019)
+/**
+ * File: GraphFromImage.cpp
+ * Authors: Olivier Cuisenaire
+ * Modified by: Robin Demarta, Loïc Dessaules, Doran Kayoumi
  *
- * Created on 26. septembre 2014, 15:08
+ * Created on 18. septembre 2014, 10:46
+ * Description: Class to generate a Graph based on an Image
  */
 
 #ifndef SYMBOLGRAPH_H
@@ -34,14 +35,12 @@ public:
     {
         delete g;
     }            
-    
-    //creation du SymbolGraph a partir du fichier movies.txt
+
+    /**
+     * Creates the SymbolGraph with the .txt file
+     * @param filename
+     */
     SymbolGraph(const std::string& filename) {
-        /* A IMPLEMENTER */
-        // Indication: nous autorisons une double lecture du fichier.
-
-        // exemple de lecture du fichier, ligne par ligne puis element par element (separe par des /)
-
         std::string line;
         std::ifstream s(filename);
         int idx = 0;
@@ -83,20 +82,35 @@ public:
 
         s.close();
     }
-    
-    //verifie la presence d'un symbole
+
+    /**
+     * Checks if a symbol exists
+     * O(log(n))
+     * @param name
+     * @return
+     */
     bool contains(const std::string& name) const {
         auto it = symbols.find(name);
         return it != symbols.end();
     }
-    
-    //index du sommet correspondant au symbole
+
+    /**
+     * Returns the index of the corresponding symbol
+     * O(log(n))
+     * @param name
+     * @return
+     */
     int index(const std::string& name) const {
          auto it = symbols.find(name);
          return it->second;
     }
-    
-    //symbole correspondant au sommet
+
+    /**
+     * Returns the corresponding symbol
+     * O(n)
+     * @param idx
+     * @return
+     */
     std::string symbol(int idx) const {
         for (auto it = symbols.begin(); it != symbols.end(); ++it) {
             if (it->second == idx) {
@@ -105,7 +119,12 @@ public:
         }
     }
 
-    //symboles adjacents a un symbole
+    /**
+     * Returns a list of all the adjacent symbols
+     * O(n)
+     * @param name
+     * @return
+     */
     std::vector<std::string> adjacent(const std::string& name) const {
         int idx = index(name);
         std::list<int> idxAdj = g->adjacent(idx);
