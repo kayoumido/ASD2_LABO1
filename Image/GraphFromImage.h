@@ -24,22 +24,49 @@ public:
 
     typedef std::list<int> Iterable;
 
-    // Retourne les sommets adjacents au sommet v, THROWS std::out_of_range
+    /**
+     * @brief Get the adjacent vertexes of given vertex
+     * @param v vertex
+     * @throws std::out_of_range
+     *
+     * @return list of all the adjacent
+     */
     Iterable adjacent(int v) const;
 
-    // Retourne le nombre de sommets
+    /**
+     * @return the number of vertexes
+     */
     int V() const;
 
-    // Méthodes permettants de passer de x/y à idx et vice-versa
-    // THROWS std::out_of_range
-
-    // Index du sommet représentant le pixel a la position x, y
+    /**
+     * @brief Get the index of the vertex representing the pixel @ the position x & y
+     *
+     * @param x coordinate
+     * @param y coordinate
+     * @throws std::out_of_range
+     *
+     * @return the index of vertex representing the pixel
+     */
     int idx(int x, int y) const;
 
-    // Coordonnée x du sommet idx
+    /**
+     * @brief Get the x coordinet of a vertex
+     *
+     * @param idx vertex
+     * @throws std::out_of_range
+     *
+     * @return x coordinate of the given vertex
+     */
     int x(int idx) const;
 
-    // Coordonnée y du sommet idx
+    /**
+     * @brief Get the y coordinet of a vertex
+     *
+     * @param idx vertex
+     * @throws std::out_of_range
+     *
+     * @return y coordinate of the given vertex
+     */
     int y(int idx) const;
 
 // ELEMENTS PRIVES: LIBRE D'AJOUTER DES ELEMENTS
