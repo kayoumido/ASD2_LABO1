@@ -18,7 +18,7 @@ GraphFromImage::GraphFromImage(const bitmap_image &i) : image(i) {}
 
 // throws std::out_of_range
 GraphFromImage::Iterable GraphFromImage::adjacent(int v) const {
-    Iterable adj;
+    Iterable adj = {};
 
     if (!isIdxInsideGraph(v)) {
         throw(out_of_range("Index is outside of the graph"));
@@ -89,23 +89,26 @@ int GraphFromImage::V() const {
 }
 
 
-bool GraphFromImage::isCoordInsideImage(int x, int y) const {
+bool GraphFromImage::isCoordInsideImage(const int x, const int y) const {
     // Check that coordinates are inside the image
     return (x >= 0 && x < (int) image.width()) && (y >= 0 && y < (int) image.height());
 }
 
-bool GraphFromImage::isIdxInsideGraph(int idx) const {
+bool GraphFromImage::isIdxInsideGraph(const int idx) const {
 
     // check that the given idx is within the Graph
     return idx >= 0 && idx < (int) image.width() * (int) image.height();
 }
 
 bool
-GraphFromImage::isCorrectAdjacent(int v, unsigned char rWanted, unsigned char gWanted, unsigned char bWanted) const {
+GraphFromImage::isCorrectAdjacent(const int v, const unsigned char rWanted, const unsigned char gWanted,
+                                  const unsigned char bWanted) const {
     unsigned char r, g, b;
 
     if (isIdxInsideGraph(v)) {
         image.get_pixel((unsigned) x(v), (unsigned) y(v), r, g, b);
         return (r == rWanted && g == gWanted && b == bWanted);
     }
+
+    return false;
 }

@@ -27,6 +27,9 @@ int main(int argc, char** argv) {
     DFS<GraphFromImage> dfs(G);
 
     //Question BONUS: Pourquoi n'utilisons-nous pas la methode visite pour parcourir l'image ?
+    // Car la methode visite est récursif et peut être au pire des cas appelée autant de fois que le nombre de sommet,
+    // de ce fait, la pile d'appels serait trop importante et pourrait causer une erreur à l'exécution.
+
 
     //on colore le centre de la pomme
     dfs.iterativeVisit( G.idx(250, 400), [&G, &image] (int v) {
