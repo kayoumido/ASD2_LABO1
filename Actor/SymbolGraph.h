@@ -85,7 +85,7 @@ public:
 
     /**
      * Checks if a symbol exists
-     * O(log(n))
+     * O(log(n)) -> we decided to use a map to have this complexity instead of a vector or something else with worse complexity
      * @param name
      * @return
      */
@@ -96,7 +96,7 @@ public:
 
     /**
      * Returns the index of the corresponding symbol
-     * O(log(n))
+     * O(log(n)) -> we decided to use a map to have this complexity instead of a vector or something else with worst complexity
      * @param name
      * @return
      */
