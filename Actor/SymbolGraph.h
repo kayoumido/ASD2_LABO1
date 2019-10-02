@@ -14,7 +14,6 @@
 #include <fstream>
 #include <string>
 #include <sstream>
-#include <algorithm>
 #include <vector>
 #include <map>
 #include <list>

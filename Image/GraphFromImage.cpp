@@ -100,13 +100,7 @@ bool GraphFromImage::isIdxInsideGraph(const int idx) const {
     return idx >= 0 && idx < (int) image.width() * (int) image.height();
 }
 
-<<<<<<< HEAD
 bool GraphFromImage::isCorrectAdjacent(int v, unsigned char rWanted, unsigned char gWanted, unsigned char bWanted) const {
-=======
-bool
-GraphFromImage::isCorrectAdjacent(const int v, const unsigned char rWanted, const unsigned char gWanted,
-                                  const unsigned char bWanted) const {
->>>>>>> master
     unsigned char r, g, b;
 
     if (isIdxInsideGraph(v)) {
