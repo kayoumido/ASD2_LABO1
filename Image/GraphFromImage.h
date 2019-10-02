@@ -5,6 +5,10 @@
  *
  * Created on 2. octobre 2014, 12:09
  * Description: Class to generate a Graph based on an Image
+ *
+ * Details :    We've decided to not add the complexities
+ *              because all the methods are simple checks and didn't
+ *              add any useful info.
  */
 
 #ifndef GRAPHFROMIMAGE_H
@@ -69,16 +73,35 @@ public:
      */
     int y(int idx) const;
 
-// ELEMENTS PRIVES: LIBRE D'AJOUTER DES ELEMENTS
 private:
     const bitmap_image &image;
 
-    // **** ___VOTRE CODE CI-DESSOUS___ **** //
-    bool isIdxInsideGraph(int idx) const;
 
-    bool isCoordInsideImage(int x, int y) const;
+    /**
+     * @brief Check if an index is within the graph
+     * @param idx index to check
+     * @return boolean indicating if index is within the graph
+     */
+    bool isIdxInsideGraph(const int idx) const;
 
-    bool isCorrectAdjacent(int v, unsigned char rWanted, unsigned char gWanted, unsigned char bWanted) const;
+    /**
+     * @brief Check if given coordinates are in the image
+     * @param x coordinate
+     * @param y coordinate
+     * @return boolean indicating if the coordinates are in the image
+     */
+    bool isCoordInsideImage(const int x, const int y) const;
+
+    /**
+     * @brief Check if a vertex is a correct adjacent. i.e. it has the correct rgb
+     * @param v vertex to check
+     * @param rWanted wanted red
+     * @param gWanted wanted green
+     * @param bWanted wanted blue
+     * @return boolean indicating if it's a correct adjacent
+     */
+    bool isCorrectAdjacent(const int v, const unsigned char rWanted, const unsigned char gWanted,
+                           const unsigned char bWanted) const;
 };
 
 #endif    /* GRAPHFROMIMAGE_H */

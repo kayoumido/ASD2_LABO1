@@ -89,18 +89,24 @@ int GraphFromImage::V() const {
 }
 
 
-bool GraphFromImage::isCoordInsideImage(int x, int y) const {
+bool GraphFromImage::isCoordInsideImage(const int x, const int y) const {
     // Check that coordinates are inside the image
     return (x >= 0 && x < (int) image.width()) && (y >= 0 && y < (int) image.height());
 }
 
-bool GraphFromImage::isIdxInsideGraph(int idx) const {
+bool GraphFromImage::isIdxInsideGraph(const int idx) const {
 
     // check that the given idx is within the Graph
     return idx >= 0 && idx < (int) image.width() * (int) image.height();
 }
 
+<<<<<<< HEAD
 bool GraphFromImage::isCorrectAdjacent(int v, unsigned char rWanted, unsigned char gWanted, unsigned char bWanted) const {
+=======
+bool
+GraphFromImage::isCorrectAdjacent(const int v, const unsigned char rWanted, const unsigned char gWanted,
+                                  const unsigned char bWanted) const {
+>>>>>>> master
     unsigned char r, g, b;
 
     if (isIdxInsideGraph(v)) {
