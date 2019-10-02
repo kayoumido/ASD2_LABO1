@@ -87,7 +87,7 @@ public:
      * Checks if a symbol exists
      * O(log(n)) -> we decided to use a map to have this complexity instead of a vector or something else with worse complexity
      * @param name
-     * @return
+     * @return true if the symbol exists and false otherwise
      */
     bool contains(const std::string& name) const {
         auto it = symbols.find(name);
@@ -95,10 +95,10 @@ public:
     }
 
     /**
-     * Returns the index of the corresponding symbol
+     * Searches the index of the corresponding symbol
      * O(log(n)) -> we decided to use a map to have this complexity instead of a vector or something else with worst complexity
      * @param name
-     * @return
+     * @return the index
      */
     int index(const std::string& name) const {
          auto it = symbols.find(name);
@@ -106,10 +106,10 @@ public:
     }
 
     /**
-     * Returns the corresponding symbol
+     * Gets the corresponding symbol
      * O(n)
      * @param idx
-     * @return
+     * @return the symbol's string
      */
     std::string symbol(int idx) const {
         for (auto it = symbols.begin(); it != symbols.end(); ++it) {
@@ -123,7 +123,7 @@ public:
      * Returns a list of all the adjacent symbols
      * O(n)
      * @param name
-     * @return
+     * @return a list containing the adjacent symbols
      */
     std::vector<std::string> adjacent(const std::string& name) const {
         int idx = index(name);
